@@ -1,9 +1,10 @@
 const express = require('express');
-const req = require('express/lib/request');
+//const req = require('express/lib/request');
 const app = express();
 const path = require('path');
 const cors = require('cors');
 const PORT = process.env.PORT || 3000;
+app.use(express.static('/index.html'));
 app.use(express.static('public'));
 app.use(express.json());
 const connectDB = require('./config/db');
@@ -21,6 +22,7 @@ app.set('view engine', 'ejs');
 app.use('/api/files', require('./routes/files'));
 app.use('/files',require('./routes/show'));
 app.use('/files/download', require('./routes/download'));
+
 
 app.listen(PORT, ()=> {
     console.log(`Listening on port ${PORT}`);
